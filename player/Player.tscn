@@ -1,3 +1,100 @@
-[gd_scene format=3 uid="uid://dvdcuovvapvll"]
+[gd_scene format=4 uid="uid://dvdcuovvapvll"]
 
-[node name="Player" type="Node2D" unique_id=1362207199]
+[ext_resource type="Script" uid="uid://d2wqtsqgqmqno" path="res://player/player.gd" id="1_ulp21"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_ulp21"]
+_data = PackedByteArray("AAADAAUAAAABAAAAIAAAACAAAACEAAAAUklGRnwAAABXRUJQVlA4THAAAAAvH8AHEC+gpm0jONXt3w7UqQmAhM1xQhvcEgmQ0DhgNfv/nXH+A0CU98XWfM8Bq8i22tAEvAICggIkJBLa8y8mM3T4juj/BKhdBF0AiDoPEbFApOAWCW1QBAsQ8+Cn8w4qibE3l/LU5RKr7NMlm7dy")
+size_override = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c3w1"]
+atlas = SubResource("PortableCompressedTexture2D_ulp21")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wnvi2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c3w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c3w1")
+}],
+"loop": true,
+"name": &"E_walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c3w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c3w1")
+}],
+"loop": true,
+"name": &"N_walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c3w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c3w1")
+}],
+"loop": true,
+"name": &"S_walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c3w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c3w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c3w1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_83hs8"]
+radius = 2.0
+height = 6.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1789445710 groups=["player"]]
+collision_layer = 2
+collision_mask = 24
+motion_mode = 1
+script = ExtResource("1_ulp21")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=360725718]
+texture_filter = 1
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_wnvi2")
+animation = &"idle"
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://player/assets/playerAnim.aseprite",
+"source_uid": 1837056426412927552
+}
+metadata/_aseprite_wizard_source_file_hash_ = "eaf937320563db58fa698598471ec89e"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1545100648]
+position = Vector2(0, -2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_83hs8")
