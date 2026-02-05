@@ -8,9 +8,9 @@ extends CharacterBody2D
 @export var deceleration: float = 1000.0
 
 #roll
-@export var roll_speed_multiplier: float = 2.5
+@export var roll_speed_multiplier: float = 2
 @export var roll_duration: float = 0.1
-@export var roll_cooldown: float = 0.5
+@export var roll_cooldown: float = 5
 
 var can_move : bool = true
 var is_rolling: bool = false
