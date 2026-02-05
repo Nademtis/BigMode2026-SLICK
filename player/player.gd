@@ -3,35 +3,73 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var max_speed: float = 80.0
-var current_speed : float
+#var current_speed : float
 @export var acceleration: float = 400.0
 @export var deceleration: float = 1000.0
 
+#roll
+@export var roll_speed_multiplier: float = 2.5
+@export var roll_duration: float = 0.1
+@export var roll_cooldown: float = 0.5
+
 var can_move : bool = true
+var is_rolling: bool = false
+
 var input_dir: Vector2
 var move_dir: Vector2
-
+var last_move_dir: Vector2 = Vector2.DOWN
 
 func _physics_process(delta: float) -> void:
-	if can_move:
+	if Input.is_action_just_pressed("roll"):
+		_try_roll()
+
+	if can_move and not is_rolling:
 		_movement(delta)
-	#_handle_footsteps(delta)
-	
-	
+
+	move_and_slide()
+	#current_speed = velocity.length()
 	
 func _movement(delta: float) -> void:
 	input_dir = Input.get_vector("left", "right", "up", "down")
-	_update_animation(input_dir)
 
 	if input_dir != Vector2.ZERO:
-		velocity = velocity.move_toward(input_dir * max_speed, acceleration * delta)
+		last_move_dir = input_dir.normalized()
+		_update_animation(input_dir)
+		velocity = velocity.move_toward(
+			input_dir * max_speed,
+			acceleration * delta
+		)
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
-	move_and_slide()
+		_update_animation(Vector2.ZERO)
+		velocity = velocity.move_toward(
+			Vector2.ZERO,
+			deceleration * delta
+		)
+
+
+func _try_roll() -> void:
+	if is_rolling:
+		return
+
+	is_rolling = true
+	can_move = false
+
+	var roll_dir := last_move_dir
+	if roll_dir == Vector2.ZERO:
+		roll_dir = Vector2.DOWN
+
+	velocity = roll_dir * max_speed * roll_speed_multiplier
+
+	# roll anim
+	# animated_sprite_2d.play("roll")
+
+	await get_tree().create_timer(roll_duration).timeout
+	is_rolling = false
+	can_move = true
+	await get_tree().create_timer(roll_cooldown).timeout
 
 
 func _update_animation(dir: Vector2) -> void:
-
 	if dir == Vector2.ZERO:
 		animated_sprite_2d.play("idle")
 		return
