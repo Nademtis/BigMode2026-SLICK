@@ -62,17 +62,17 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_83hs8"]
 radius = 2.0
-height = 6.0
+height = 7.9999995
 
 [node name="Player" type="CharacterBody2D" unique_id=1789445710 groups=["player"]]
 collision_layer = 2
-collision_mask = 24
+collision_mask = 28
 motion_mode = 1
 script = ExtResource("1_ulp21")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=360725718]
 texture_filter = 1
-position = Vector2(0, -8)
+position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_wnvi2")
 animation = &"idle"
 metadata/_aseprite_wizard_interface_config_ = {
@@ -95,6 +95,6 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "eaf937320563db58fa698598471ec89e"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1545100648]
-position = Vector2(0, -2)
+position = Vector2(0, -3)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_83hs8")
