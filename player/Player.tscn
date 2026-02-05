@@ -72,7 +72,7 @@ script = ExtResource("1_ulp21")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=360725718]
 texture_filter = 1
-position = Vector2(0, -9)
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_wnvi2")
 animation = &"idle"
 metadata/_aseprite_wizard_interface_config_ = {
@@ -95,6 +95,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "eaf937320563db58fa698598471ec89e"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1545100648]
-position = Vector2(0, -3)
+visible = false
+position = Vector2(0, -2)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_83hs8")
