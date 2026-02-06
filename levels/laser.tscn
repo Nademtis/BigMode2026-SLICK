@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://ct41njnoijkny" path="res://scenes/laser/laser.gd" id="1_77bhp"]
 
 [node name="Laser" type="Line2D" unique_id=720139936 groups=["laser"]]
-visible = false
 points = PackedVector2Array(0, 0, 0, 40)
 width = 2.0
 default_color = Color(0.8980392, 0.2627451, 0.2627451, 1)
@@ -14,5 +13,9 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1973115750]
+
+[node name="shadowLine2d" type="Line2D" parent="." unique_id=746596204]
+width = 2.0
+default_color = Color(0, 0, 0, 0.1254902)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

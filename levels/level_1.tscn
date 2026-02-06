@@ -64,11 +64,10 @@ position = Vector2(42, 33)
 [node name="LaserContainer" type="Node2D" parent="." unique_id=948117287]
 
 [node name="Laser" parent="LaserContainer" unique_id=509559797 instance=ExtResource("6_btoec")]
-visible = true
-position = Vector2(328, 200)
+position = Vector2(334, 216)
+points = PackedVector2Array(-6, -16, -6, 80)
 direction = 1
 
 [node name="Laser2" parent="LaserContainer" unique_id=720139936 instance=ExtResource("6_btoec")]
-visible = true
-position = Vector2(336, 272)
-points = PackedVector2Array(0, 0, -48, 0)
+position = Vector2(246, 190)
+points = PackedVector2Array(42, 0, -48, 0)
