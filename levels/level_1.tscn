@@ -35,9 +35,6 @@ tile_map_data = PackedByteArray("AAAXAAkAAwABAAsAAAAYAAkAAwACAAsAAAAZAAkAAwADAAs
 y_sort_enabled = true
 position = Vector2(264, 152)
 
-[node name="SCamera" parent="." unique_id=1962101888 instance=ExtResource("4_n46q3")]
-position = Vector2(283, 156)
-
 [node name="CameraContainer" type="Node" parent="." unique_id=2071702717]
 
 [node name="Path2D" type="Path2D" parent="CameraContainer" unique_id=696621527]
@@ -48,3 +45,17 @@ curve = SubResource("Curve2D_kx6l7")
 position = Vector2(344, 160)
 follow_target = NodePath("../../../Ysort/Player")
 follow_path = NodePath("..")
+
+[node name="SCameraContainer" type="Node2D" parent="." unique_id=954029070]
+
+[node name="SCamera" parent="SCameraContainer" unique_id=1962101888 node_paths=PackedStringArray("marker_list") instance=ExtResource("4_n46q3")]
+position = Vector2(199, 183)
+marker_list = [NodePath("Marker2D"), NodePath("Marker2D2")]
+duration_list = Array[float]([3.0, 3.0])
+rotation_speed = 0.5
+
+[node name="Marker2D" type="Marker2D" parent="SCameraContainer/SCamera" unique_id=1074678311]
+position = Vector2(42, -25)
+
+[node name="Marker2D2" type="Marker2D" parent="SCameraContainer/SCamera" unique_id=1671668699]
+position = Vector2(42, 33)
