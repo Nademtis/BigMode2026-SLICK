@@ -95,7 +95,6 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "eaf937320563db58fa698598471ec89e"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1545100648]
-visible = false
 position = Vector2(0, -2)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_83hs8")
