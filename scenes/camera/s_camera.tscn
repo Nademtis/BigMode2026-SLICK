@@ -21,7 +21,8 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("2_c35sa")
 
 [node name="Area2D" type="Area2D" parent="rotater" unique_id=1533430626]
-rotation = 1.6377985
+position = Vector2(-0.8178314, -2.6492088)
+rotation = 1.5707964
 collision_layer = 16
 collision_mask = 2
 
@@ -29,9 +30,8 @@ collision_mask = 2
 color = Color(1, 1, 1, 0.1882353)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rotater/Area2D" unique_id=1924365688]
-position = Vector2(-1.9552324, 1.0849277)
-rotation = -0.006504593
-polygon = PackedVector2Array(2.9615846, -1.1086122, 66.044914, -27.423906, 82.617096, -12.017326, 83.199905, 3.9720573, 67.79333, 20.544245)
+visible = false
+polygon = PackedVector2Array(2.9615846, -1.1086122, 66.044914, -27.423906, 75.4732, -21.564188, 82.617096, -12.017326, 84.40339, -4.4395924, 83.199905, 3.9720573, 76.32636, 13.553785, 67.79333, 20.544245)
 
 [node name="Timer" type="Timer" parent="." unique_id=855489415]
 

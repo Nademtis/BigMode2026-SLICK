@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dvdcuovvapvll" path="res://player/Player.tscn" id="2_jirdo"]
 [ext_resource type="PackedScene" uid="uid://6jynurdwu2mp" path="res://scenes/cam.tscn" id="3_bt44k"]
 [ext_resource type="PackedScene" uid="uid://242sywhlbn6a" path="res://scenes/camera/s_camera.tscn" id="4_n46q3"]
+[ext_resource type="PackedScene" uid="uid://bgyyjuty1deyu" path="res://levels/laser.tscn" id="6_btoec"]
 
 [sub_resource type="Curve2D" id="Curve2D_kx6l7"]
 _data = {
@@ -59,3 +60,15 @@ position = Vector2(42, -25)
 
 [node name="Marker2D2" type="Marker2D" parent="SCameraContainer/SCamera" unique_id=1671668699]
 position = Vector2(42, 33)
+
+[node name="LaserContainer" type="Node2D" parent="." unique_id=948117287]
+
+[node name="Laser" parent="LaserContainer" unique_id=509559797 instance=ExtResource("6_btoec")]
+visible = true
+position = Vector2(328, 200)
+direction = 1
+
+[node name="Laser2" parent="LaserContainer" unique_id=720139936 instance=ExtResource("6_btoec")]
+visible = true
+position = Vector2(336, 272)
+points = PackedVector2Array(0, 0, -48, 0)

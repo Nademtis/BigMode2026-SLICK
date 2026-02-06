@@ -1,0 +1,55 @@
+extends Line2D
+#laser
+enum Direction {
+	RIGHT_LEFT,
+	DOWN_UP
+}
+@onready var collision_polygon_2d: CollisionPolygon2D = $Area2D/CollisionPolygon2D
+@export var direction: Direction = Direction.RIGHT_LEFT
+
+
+func _ready() -> void:
+	set_coll()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("laser found player")
+
+func set_coll() -> void:
+	if points.is_empty():
+		push_error("laser points not set")
+	
+	var new_coll_polygon : PackedVector2Array
+	var point_1 : Vector2
+	var point_2 : Vector2
+	var point_3 : Vector2
+	var point_4 : Vector2
+	
+	if direction == Direction.DOWN_UP:
+		point_1 = Vector2(points[0].x - 1, points[0].y)
+		point_2 = Vector2(points[0].x + 1, points[0].y)
+		
+		point_3 = Vector2(points[1].x + 1, points[1].y)
+		point_4 = Vector2(points[1].x + 1, points[1].y)
+		
+		new_coll_polygon.append(point_1)
+		new_coll_polygon.append(point_2)
+		new_coll_polygon.append(point_3)
+		new_coll_polygon.append(point_4)
+		
+		collision_polygon_2d.polygon = new_coll_polygon
+	else:
+		point_1 = Vector2(points[0].x, points[0].y - 1)
+		point_2 = Vector2(points[0].x, points[0].y + 1)
+		
+		point_3 = Vector2(points[1].x, points[1].y + 1)
+		point_4 = Vector2(points[1].x, points[1].y + 1)
+		
+		new_coll_polygon.append(point_1)
+		new_coll_polygon.append(point_2)
+		new_coll_polygon.append(point_3)
+		new_coll_polygon.append(point_4)
+		
+		collision_polygon_2d.polygon = new_coll_polygon
+		
