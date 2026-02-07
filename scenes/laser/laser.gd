@@ -31,7 +31,9 @@ func _ready() -> void:
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("!!!laser found player!!!")
+		var player : Player = body
+		if !player.is_rolling:
+			print("!!!laser found player!!!")
 		#TODO slow player?
 		#TODO start alarm and countdown
 

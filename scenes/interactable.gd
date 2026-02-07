@@ -8,9 +8,6 @@ var player_in_range : bool = false
 func _ready() -> void:
 	Events.connect("player_interact_request", interact_check)
 
-	
-
-
 func interact_check() -> void:
 	#player has requested interact, check if is in range then emit
 	print("interact request")

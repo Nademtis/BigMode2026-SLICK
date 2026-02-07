@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://u3ynonklp87j"]
+
+[ext_resource type="Script" uid="uid://cu8wgr65jget4" path="res://scenes/artifacts/artifact.gd" id="1_yfwpc"]
+[ext_resource type="PackedScene" uid="uid://bs28vifi5uoq1" path="res://scenes/Interactable.tscn" id="2_8sx1q"]
+
+[sub_resource type="Gradient" id="Gradient_yfwpc"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8sx1q"]
+gradient = SubResource("Gradient_yfwpc")
+width = 15
+height = 15
+fill_from = Vector2(1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vqsag"]
+radius = 30.504099
+
+[sub_resource type="Gradient" id="Gradient_3sk1a"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yfwpc"]
+gradient = SubResource("Gradient_3sk1a")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.74347824, 0.2521739)
+
+[node name="Artifact" type="Node2D" unique_id=1896995903]
+script = ExtResource("1_yfwpc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=914890673]
+position = Vector2(0.5, -7.5)
+texture = SubResource("GradientTexture2D_8sx1q")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=562366705]
+position = Vector2(0.5, -7.5)
+
+[node name="Interactable" parent="." unique_id=2120554612 instance=ExtResource("2_8sx1q")]
+position = Vector2(0.5, -7.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=718750658]
+shape = SubResource("CircleShape2D_vqsag")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=27094539]
+z_index = 3
+position = Vector2(114, 206)
+color = Color(0.9098039, 0.75686276, 0.4392157, 1)
+energy = 7.8
+texture = SubResource("GradientTexture2D_yfwpc")

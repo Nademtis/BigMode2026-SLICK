@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://concqyk6cpd1f" path="res://scenes/generator/generator_screenOff.png" id="2_rmiv3"]
 [ext_resource type="Texture2D" uid="uid://cfsnbe3tdkx23" path="res://scenes/generator/generator_screen.png" id="3_xbvhi"]
 [ext_resource type="PackedScene" uid="uid://bs28vifi5uoq1" path="res://scenes/Interactable.tscn" id="5_xbvhi"]
+[ext_resource type="Shader" uid="uid://c23y440mp0c6d" path="res://misc/shaders/radialMenu.gdshader" id="6_bdebr"]
+[ext_resource type="Texture2D" uid="uid://ctbt8x1cop8fq" path="res://icon.svg" id="7_3lw3g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xbvhi"]
 radius = 17.029387
@@ -12,6 +14,23 @@ radius = 17.029387
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xbvhi"]
 radius = 2.0
 height = 13.999568
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3lw3g"]
+shader = ExtResource("6_bdebr")
+shader_parameter/removed_segments = 0.0
+shader_parameter/ring_color = Color(1, 1, 1, 1)
+shader_parameter/bg_color = Color(0, 0, 0, 1)
+shader_parameter/bg_line_color = Color(1, 1, 1, 0)
+shader_parameter/empty_cell_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/antialias = false
+shader_parameter/pixelFactor = 1.0
+shader_parameter/radius = 0.7
+shader_parameter/line_width = 0.21
+shader_parameter/bg_width = 0.28
+shader_parameter/start_angle = 0.0
+shader_parameter/segment_spacing = 0.0
+shader_parameter/segment_angle = 0.0
+shader_parameter/segment_count = 3
 
 [node name="generator" type="Node2D" unique_id=1843199359 groups=["interactable"]]
 y_sort_enabled = true
@@ -49,3 +68,13 @@ collision_mask = 2
 position = Vector2(1, 4)
 rotation = 1.5786523
 shape = SubResource("CapsuleShape2D_xbvhi")
+
+[node name="radialIndicator" type="TextureRect" parent="." unique_id=2049482418]
+z_index = 5
+material = SubResource("ShaderMaterial_3lw3g")
+offset_left = -4.0
+offset_top = -26.0
+offset_right = 124.0
+offset_bottom = 102.0
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("7_3lw3g")

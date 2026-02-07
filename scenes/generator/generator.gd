@@ -1,6 +1,8 @@
 extends Interactable
 class_name Generator
 
+@onready var radial_indicator: TextureRect = $radialIndicator
+
 var is_turned_on : bool = true
 @onready var interactable: Interactable = $Interactable
 @onready var screen_on: Sprite2D = $base/screenON
@@ -52,7 +54,10 @@ func update_electronic_objects() -> void:
 
 func turn_generator_on() -> void:
 	screen_on.visible = true
+	radial_indicator.visible = false
+	
 
 func turn_generator__off()  -> void:
 	screen_on.visible = false
+	radial_indicator.visible = true
 	
