@@ -13,7 +13,7 @@ var level_index = 0 # start with 0
 var level_list : Array[String] = [
 "res://levels/level_1.tscn", 
 "res://levels/level_2.tscn",
-#"res://levels/level_3.tscn",
+"res://levels/level_3.tscn",
 #"res://levels/level_4.tscn",
 ]
 const DEBUG_SKIP_INTRO : bool = true
