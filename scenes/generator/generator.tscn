@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ctbt8x1cop8fq" path="res://icon.svg" id="7_3lw3g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xbvhi"]
-radius = 17.029387
+radius = 32.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xbvhi"]
 radius = 2.0
@@ -17,9 +17,9 @@ height = 13.999568
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3lw3g"]
 shader = ExtResource("6_bdebr")
-shader_parameter/removed_segments = 0.0
+shader_parameter/removed_segments = 0.6370000302575
 shader_parameter/ring_color = Color(1, 1, 1, 1)
-shader_parameter/bg_color = Color(0, 0, 0, 1)
+shader_parameter/bg_color = Color(0.14117648, 0.08235294, 0.15294118, 1)
 shader_parameter/bg_line_color = Color(1, 1, 1, 0)
 shader_parameter/empty_cell_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/antialias = false
@@ -78,3 +78,8 @@ offset_right = 124.0
 offset_bottom = 102.0
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("7_3lw3g")
+
+[node name="Timer" type="Timer" parent="." unique_id=1030783613]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -36,22 +36,26 @@ tile_map_data = PackedByteArray("AAAXAAkAAwABAAsAAAAYAAkAAwACAAsAAAAZAAkAAwADAAs
 
 [node name="Player" parent="Ysort" unique_id=1362207199 instance=ExtResource("2_jirdo")]
 y_sort_enabled = true
-position = Vector2(390, 257)
+position = Vector2(267, 138)
 
 [node name="generator" parent="Ysort" unique_id=1843199359 node_paths=PackedStringArray("electronic_object_list") instance=ExtResource("7_gwceb")]
 position = Vector2(219, 129)
 electronic_object_list = [NodePath("../../SCameraContainer/SCamera"), NodePath("../../LaserContainer/Laser"), NodePath("../../LaserContainer/Laser2")]
+turn_back_on_time = 3.0
 
 [node name="ArtifactContainer" type="Node2D" parent="Ysort" unique_id=342180797]
 y_sort_enabled = true
 
 [node name="Artifact" parent="Ysort/ArtifactContainer" unique_id=1896995903 instance=ExtResource("5_l53as")]
 y_sort_enabled = true
-position = Vector2(452, 267)
+position = Vector2(449, 265)
 
 [node name="Artifact2" parent="Ysort/ArtifactContainer" unique_id=859250830 instance=ExtResource("5_l53as")]
 y_sort_enabled = true
 position = Vector2(391, 310)
+
+[node name="Artifact3" parent="Ysort/ArtifactContainer" unique_id=742173707 instance=ExtResource("5_l53as")]
+position = Vector2(248, 310)
 
 [node name="CameraContainer" type="Node" parent="." unique_id=2071702717]
 
@@ -60,7 +64,7 @@ position = Vector2(296, 144)
 curve = SubResource("Curve2D_kx6l7")
 
 [node name="Cam" parent="CameraContainer/Path2D" unique_id=1793669247 node_paths=PackedStringArray("follow_target", "follow_path") instance=ExtResource("3_bt44k")]
-position = Vector2(344, 257)
+position = Vector2(344, 160)
 follow_target = NodePath("../../../Ysort/Player")
 follow_path = NodePath("..")
 

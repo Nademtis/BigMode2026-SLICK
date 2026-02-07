@@ -12,11 +12,9 @@ func _ready() -> void:
 	else:
 		camera.priority = 1
 		
-		
 	for artifact : Artifact in artifact_container.get_children():
 		artifact.artifact_collected.connect(_on_artifact_collected)
 		required_amount += 1
-	
 	
 func _on_artifact_collected() -> void:
 	collected_amount += 1

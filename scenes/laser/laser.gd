@@ -41,24 +41,7 @@ func set_shadow() -> void:
 	if direction == Direction.RIGHT_LEFT:
 		shadow_line_2d.points = self.points
 		shadow_line_2d.position = shadow_line_2d.position + Vector2(0, 5)
-		#var new_polygon : PackedVector2Array
-		#var point_1 : Vector2
-		#var point_2 : Vector2
-		#var point_3 : Vector2
-		#var point_4 : Vector2
-#
-		#point_1 = Vector2(points[0].x, points[0].y - 1)
-		#point_2 = Vector2(points[0].x, points[0].y + 1)
-		#
-		#point_3 = Vector2(points[1].x, points[1].y - 1)
-		#point_4 = Vector2(points[1].x, points[1].y + 1)
-#
-		#new_polygon.append(point_1)
-		#new_polygon.append(point_2)
-		#new_polygon.append(point_3)
-		#new_polygon.append(point_4)
-		#
-		#shadow_line_2d.points = new_polygon
+
 
 func set_coll() -> void:
 	if points.is_empty():
