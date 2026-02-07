@@ -106,6 +106,8 @@ texture = ExtResource("1_bruia")
 10:0/0 = 0
 10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, -8, 8, -8, -2.6666665, 0, -2.6666665)
 3:4/0 = 0
+5:3/0 = 0
+8:3/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 4

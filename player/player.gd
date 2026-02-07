@@ -6,11 +6,11 @@ class_name Player
 @export var max_speed: float = 80.0
 #var current_speed : float
 @export var acceleration: float = 400.0
-@export var deceleration: float = 1000.0
+@export var deceleration: float = 600.0
 
 #roll
 @export var roll_speed_multiplier: float = 2
-@export var roll_duration: float = 0.15
+@export var roll_duration: float = 0.28
 @export var roll_cooldown: float = 5
 
 var can_move : bool = true
@@ -23,7 +23,10 @@ var last_move_dir: Vector2 = Vector2.DOWN
 #audio
 @onready var sfx_walk_carpet: AudioStreamPlayer2D = $SFXwalkCarpet
 var footstep_cooldown := 0.0 # don't change - used for when to play footstep
-var footstep_interval := 0.38 # the interval for howw often steps are played
+var footstep_interval := 0.31 # the interval for howw often steps are played
+
+func _ready() -> void:
+	animated_sprite_2d.speed_scale = 0.8
 
 func _process(_delta: float) -> void:
 	if is_rolling:
@@ -92,6 +95,7 @@ func _try_roll() -> void:
 
 	velocity = roll_dir * max_speed * roll_speed_multiplier
 
+	_play_slide_animation(roll_dir)
 	# roll anim
 	# animated_sprite_2d.play("roll")
 
@@ -100,8 +104,21 @@ func _try_roll() -> void:
 	can_move = true
 	await get_tree().create_timer(roll_cooldown).timeout
 
+func _play_slide_animation(dir: Vector2) -> void:
+	if abs(dir.x) > abs(dir.y):
+		animated_sprite_2d.play("slide_right")
+		animated_sprite_2d.flip_h = dir.x < 0
+	else:
+		animated_sprite_2d.flip_h = false
+		if dir.y < 0:
+			animated_sprite_2d.play("slide_up")
+		else:
+			animated_sprite_2d.play("slide_down")
 
 func _update_animation(dir: Vector2) -> void:
+	if is_rolling:
+		return
+	
 	if dir == Vector2.ZERO:
 		animated_sprite_2d.play("idle")
 		return
