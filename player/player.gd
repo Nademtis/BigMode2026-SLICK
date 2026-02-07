@@ -22,14 +22,15 @@ var last_move_dir: Vector2 = Vector2.DOWN
 
 #audio
 @onready var sfx_walk_carpet: AudioStreamPlayer2D = $SFXwalkCarpet
-@onready var step_timer: Timer = $stepTimer
-
+var footstep_cooldown := 0.0 # don't change - used for when to play footstep
+var footstep_interval := 0.38 # the interval for howw often steps are played
 
 func _process(_delta: float) -> void:
 	if is_rolling:
 		set_collision_mask_value(1, false)
 	else:
 		set_collision_mask_value(1, true)
+		
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("roll"):
@@ -37,8 +38,10 @@ func _physics_process(delta: float) -> void:
 
 	if can_move and not is_rolling:
 		_movement(delta)
+		handle_footsteps(delta)	
 
 	move_and_slide()
+	
 	#current_speed = velocity.length()
 
 
@@ -50,11 +53,6 @@ func _movement(delta: float) -> void:
 	input_dir = Input.get_vector("left", "right", "up", "down")
 
 	if input_dir != Vector2.ZERO:
-		#audio
-		if step_timer.is_stopped():
-			sfx_walk_carpet.play()
-			step_timer.start()
-			
 		last_move_dir = input_dir.normalized()
 		_update_animation(input_dir)
 		velocity = velocity.move_toward(
@@ -68,6 +66,18 @@ func _movement(delta: float) -> void:
 			deceleration * delta
 		)
 
+func handle_footsteps(delta: float) -> void:
+	if velocity.length() > 10.0:
+		footstep_cooldown -= delta
+
+		if footstep_cooldown <= 0.0:
+			_play_footstep()
+			footstep_cooldown = footstep_interval
+	else:
+		footstep_cooldown = 0.0
+
+func _play_footstep() -> void:
+	sfx_walk_carpet.play()
 
 func _try_roll() -> void:
 	if is_rolling:

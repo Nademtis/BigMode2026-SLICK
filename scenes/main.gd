@@ -2,6 +2,7 @@ extends Node2D
 #main
 
 @onready var level_container: Node2D = $levelContainer
+@onready var intro_sequence_sfx: AudioStreamPlayer = $MusicManager/introSequenceSFX
 
 @onready var animation_player: AnimationPlayer = $fadeInOut/AnimationPlayer
 
@@ -41,6 +42,11 @@ func _setup_new_level() -> void:
 	var new_level_scene : PackedScene = load(next_level_path)
 	var new_level_instance : Node2D = new_level_scene.instantiate()
 	level_container.add_child(new_level_instance)
+	
+	#audio and wait
+	intro_sequence_sfx.play()
+	await get_tree().create_timer(4.5).timeout
+	
 	animation_player.play("fade_out")
 
 func restart_level() -> void:
