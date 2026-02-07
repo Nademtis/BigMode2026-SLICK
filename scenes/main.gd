@@ -16,6 +16,7 @@ var level_list : Array[String] = [
 #"res://levels/level_3.tscn",
 #"res://levels/level_4.tscn",
 ]
+const DEBUG_SKIP_INTRO : bool = true
 
 var next_level_path: String
 var current_level_path: String
@@ -44,8 +45,9 @@ func _setup_new_level() -> void:
 	level_container.add_child(new_level_instance)
 	
 	#audio and wait
-	intro_sequence_sfx.play()
-	await get_tree().create_timer(4.5).timeout
+	if not DEBUG_SKIP_INTRO:
+		intro_sequence_sfx.play()
+		await get_tree().create_timer(4.5).timeout
 	
 	animation_player.play("fade_out")
 
