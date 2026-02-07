@@ -3,6 +3,16 @@
 [ext_resource type="Script" uid="uid://c83epw82jgui4" path="res://scenes/camera/s_camera.gd" id="1_c35sa"]
 [ext_resource type="Texture2D" uid="uid://dmmamf35pq7lf" path="res://scenes/camera/camera_base.png" id="1_sgemo"]
 [ext_resource type="Texture2D" uid="uid://c745g3w1w52bd" path="res://scenes/camera/camera.png" id="2_c35sa"]
+[ext_resource type="AudioStream" uid="uid://dpdd1gl2hbf61" path="res://scenes/camera/sfx/Heist_SFX_Camera_Hum_Loop.ogg" id="4_1qq0e"]
+[ext_resource type="AudioStream" uid="uid://b35emf33g46bg" path="res://scenes/camera/sfx/Heist_SFX_Camera_Alert_1.ogg" id="5_qtm74"]
+[ext_resource type="AudioStream" uid="uid://bgt45c67g8fyc" path="res://scenes/camera/sfx/Heist_SFX_Camera_Alert_3.ogg" id="6_bdl00"]
+[ext_resource type="AudioStream" uid="uid://bihf0ukvfoxj1" path="res://scenes/camera/sfx/Heist_SFX_Camera_Alert_2.ogg" id="7_h7eqb"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pum7v"]
+streams_count = 3
+stream_0/stream = ExtResource("5_qtm74")
+stream_1/stream = ExtResource("6_bdl00")
+stream_2/stream = ExtResource("7_h7eqb")
 
 [node name="SCamera" type="Node2D" unique_id=1962101888 groups=["camera"]]
 script = ExtResource("1_c35sa")
@@ -36,5 +46,23 @@ polygon = PackedVector2Array(2.9615846, -1.1086122, 66.044914, -27.423906, 75.47
 
 [node name="Timer" type="Timer" parent="." unique_id=855489415]
 
+[node name="SFX hum" type="AudioStreamPlayer2D" parent="." unique_id=1964475345]
+stream = ExtResource("4_1qq0e")
+volume_db = 9.792
+autoplay = true
+max_distance = 200.0
+attenuation = 1.3195081
+bus = &"sfx"
+
+[node name="SFX alert" type="AudioStreamPlayer2D" parent="." unique_id=1836104051]
+stream = SubResource("AudioStreamRandomizer_pum7v")
+volume_db = -5.0
+max_distance = 400.0
+attenuation = 0.6830201
+bus = &"sfx"
+
+[node name="SFX turn" type="AudioStreamPlayer2D" parent="." unique_id=589995495]
+
 [connection signal="body_entered" from="rotater/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="rotater/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

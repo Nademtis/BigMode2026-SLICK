@@ -7,6 +7,9 @@ extends Node2D
 @onready var polygon_2d: Polygon2D = $rotater/Area2D/Polygon2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $rotater/Area2D/CollisionPolygon2D
 
+var base_color : Color
+var angry_color : = Color(0.647, 0.188, 0.188, 0.38)
+
 @export var marker_list : Array[Marker2D]
 @export var duration_list: Array[float] = []
 #@export var idle_time : float = 5
@@ -21,12 +24,24 @@ extends Node2D
 var target_rotation: float = 0.0
 var current_marker_index : int = 0
 
+var player_ref: Node2D = null
+var cops_called := false
+
+var player_is_in_range : bool = false
+var in_range_elapsed := 0.0
+var total_time_required_till_angry := 0.5
+
+#audio
+@onready var sfx_alert: AudioStreamPlayer2D = $"SFX alert"
 
 var is_powered : bool = true
 
 func _ready() -> void:
+	Events.connect("call_the_cops", cops_has_been_called)
+	
 	var polygon : PackedVector2Array = collision_polygon_2d.polygon
 	polygon_2d.polygon = polygon
+	base_color = polygon_2d.color
 	
 	#error handling
 	if marker_list.is_empty() or duration_list.is_empty():
@@ -37,10 +52,39 @@ func _ready() -> void:
 	else:
 		start_look_sequence()
 
+func cops_has_been_called() -> void:
+	polygon_2d.color = angry_color
+	cops_called = true
+	
+	rotation_speed = 10
+	for duration : float in duration_list:
+		duration = 0.1
+	start_look_sequence()
 
 func _process(delta: float) -> void:
-	rotater.rotation = lerp_angle(rotater.rotation, target_rotation, delta * rotation_speed)
+	if player_is_in_range and player_ref and not cops_called:
+		var dir: Vector2 = (player_ref.global_position - global_position).normalized()
+		target_rotation = dir.angle() - PI / 2
+		in_range_elapsed += delta
+		var t : float = clamp(in_range_elapsed / total_time_required_till_angry, 0.0, 1.0)
 
+		polygon_2d.color = base_color.lerp(angry_color, t)
+		if t >= 1.0:
+			cops_called = true
+			Events.emit_signal("call_the_cops")
+	else:
+		in_range_elapsed = max(in_range_elapsed - delta * 2.0, 0.0)
+
+		var t : float = clamp(in_range_elapsed / total_time_required_till_angry, 0.0, 1.0)
+		
+		if not cops_called:
+			polygon_2d.color = base_color.lerp(angry_color, t)
+
+	rotater.rotation = lerp_angle(
+		rotater.rotation,
+		target_rotation,
+		delta * rotation_speed
+	)
 
 func on_generator_power_changed(is_on: bool) -> void:
 	if is_on:
@@ -72,12 +116,6 @@ func start_look_sequence() -> void:
 	current_marker_index = 0
 	look_at_marker(marker_list[current_marker_index], duration_list[current_marker_index])
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		var player : Player = body
-		print("!!!camera found player!!!")
-
-
 func _on_timer_timeout() -> void:
 	current_marker_index += 1
 
@@ -87,3 +125,26 @@ func _on_timer_timeout() -> void:
 	var next_marker: Marker2D = marker_list[current_marker_index]
 	var next_duration: float = duration_list[current_marker_index]
 	look_at_marker(next_marker, next_duration)
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_ref = body
+		player_is_in_range = true
+		cops_called = false
+		in_range_elapsed = 0.0
+
+		timer.stop() # stop marker cycling while tracking
+
+		sfx_alert.play()
+		polygon_2d.color = angry_color
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		if not cops_called:
+			player_is_in_range = false
+			player_ref = null
+			in_range_elapsed = 0.0
+
+			polygon_2d.color = base_color
+
+			start_look_sequence() # resume patrol

@@ -8,6 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://dx0tt8i0v1" path="res://audio/sfx/player/Footsteps/carpet/Heist_SFX_Footstep_Carpet_5.ogg" id="6_b32pr"]
 [ext_resource type="AudioStream" uid="uid://da08nfgpl1x1b" path="res://audio/sfx/player/Footsteps/carpet/Heist_SFX_Footstep_Carpet_6.ogg" id="7_hbkom"]
 [ext_resource type="AudioStream" uid="uid://n04qqo5ntn3e" path="res://audio/sfx/player/Footsteps/carpet/Heist_SFX_Footstep_Carpet_8.ogg" id="8_d4g0h"]
+[ext_resource type="AudioStream" uid="uid://cug1l2scoy4ts" path="res://audio/sfx/player/slide/Heist_SFX_Slide_Carpet_1.ogg" id="9_b32pr"]
+[ext_resource type="AudioStream" uid="uid://bgdlrqqika5gk" path="res://audio/sfx/player/slide/Heist_SFX_Slide_Carpet_2.ogg" id="10_hbkom"]
+[ext_resource type="AudioStream" uid="uid://65fyqmghtlmw" path="res://audio/sfx/player/slide/Heist_SFX_Slide_Carpet_4.ogg" id="12_v4f8b"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_06mnu"]
 _data = PackedByteArray("AAADAAUAAAABAAAAgAAAAIAAAAC+AQAAUklGRrYBAABXRUJQVlA4TKkBAAAvf8AfEC+gpm0jONXt3w7UqQmAhM1xQhvcEgmQ0DhgNfv/nXH+A0CU98XWfM8B5Np24zYfR8yeX7YLECtgogY8NTCh/14yCAKgleNFRP8duI2kSF7mHD4Cr4Khit0R3FlJsTtiO0nS7gjuVF3R4ey86WHZTdd0uF+XWhJeh/o3bPaG+5TYz6H+kMjXUVeYRoq/w6c1irdja6aWrZlKj1a68bmeSt+teB2eDtDqxLH0wfU6cFrX+d4xVEnuqKTkdpDkxjpuerA7gqmq3ZFvexub6qg/xOyAu0O2bWqWqUVrphYOfWe4zrFAYDY+52Opyx2nQlodxuvE1YRjgTX0wcrqA7zDGu8NQxV/h3cixd/hQ5L+jmCqdkewm+rB01HJZKR+5G7wpgr0wRbXQdUD53lJ/SFwd1jaDJdpdHXwppwafFpzdVQyGUjSq3RvB8lrWX4hfYfF4VS8HTAdC8yhD8uOBauGYP+cwxWYk5We7Fj6LlclmYsmMlklJdlNmUz1EH3KTQ+SS1WX3dKRzN3ANwn2KzR1YXbWqX0ieoTpK/t/APOQC+gDXiIDAAA=")
@@ -178,6 +181,13 @@ stream_4/stream = ExtResource("6_b32pr")
 stream_5/stream = ExtResource("7_hbkom")
 stream_6/stream = ExtResource("8_d4g0h")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t8epa"]
+random_pitch = 1.0116194
+streams_count = 3
+stream_0/stream = ExtResource("9_b32pr")
+stream_1/stream = ExtResource("10_hbkom")
+stream_2/stream = ExtResource("12_v4f8b")
+
 [node name="Player" type="CharacterBody2D" unique_id=1789445710 groups=["player"]]
 collision_layer = 2
 collision_mask = 61
@@ -188,7 +198,7 @@ script = ExtResource("1_ulp21")
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_2m0d2")
-animation = &"slide_right"
+animation = &"idle"
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": true,
 "layer_section": false,
@@ -222,3 +232,9 @@ bus = &"sfx"
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=273961857]
 current = true
+
+[node name="SFXslideCarpet" type="AudioStreamPlayer" parent="." unique_id=1661991700]
+stream = SubResource("AudioStreamRandomizer_t8epa")
+volume_db = -6.078
+pitch_scale = 1.53
+bus = &"sfx"

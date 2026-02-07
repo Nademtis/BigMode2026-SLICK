@@ -26,6 +26,7 @@ var last_move_dir: Vector2 = Vector2.DOWN
 @onready var sfx_walk_carpet: AudioStreamPlayer2D = $SFXwalkCarpet
 var footstep_cooldown := 0.0 # don't change - used for when to play footstep
 var footstep_interval := 0.31 # the interval for howw often steps are played
+@onready var sfx_slide_carpet: AudioStreamPlayer = $SFXslideCarpet
 
 func _ready() -> void:
 	animated_sprite_2d.speed_scale = 0.8
@@ -90,6 +91,7 @@ func _try_roll() -> void:
 
 	is_rolling = true
 	can_move = false
+	sfx_slide_carpet.play(0.2)
 
 	var roll_dir := last_move_dir
 	if roll_dir == Vector2.ZERO:

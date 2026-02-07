@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://c4sqjqmeovurp"]
 
 [ext_resource type="Script" uid="uid://cdy4r7u7lyre1" path="res://scenes/main.gd" id="1_0wfyh"]
-[ext_resource type="AudioStream" uid="uid://cwvkly001j3i8" path="res://audio/sfx/Heist_SFX_Intro_Sequence.wav" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_sugp2"]
+[ext_resource type="AudioStream" uid="uid://1mbj383q11tm" path="res://audio/sfx/Heist_SFX_Intro_Short.ogg" id="2_tbgi4"]
 [ext_resource type="AudioStream" uid="uid://bl6qsa1eknm8n" path="res://audio/ambience/Heist_Ambience_Room_Plus_Bleedthru.ogg" id="3_tbgi4"]
+[ext_resource type="AudioStream" uid="uid://bhhmc6pu1rqm6" path="res://audio/sfx/Heist_SFX_Player_Escape_Win.ogg" id="4_tbgi4"]
 
 [sub_resource type="Animation" id="Animation_0wfyh"]
 length = 0.001
@@ -64,7 +65,7 @@ script = ExtResource("1_0wfyh")
 [node name="MusicManager" type="Node" parent="." unique_id=1484981956]
 
 [node name="introSequenceSFX" type="AudioStreamPlayer" parent="MusicManager" unique_id=337775182]
-stream = ExtResource("2_jyhfs")
+stream = ExtResource("2_tbgi4")
 volume_db = -12.113
 bus = &"sfx"
 
@@ -73,6 +74,11 @@ stream = ExtResource("3_tbgi4")
 volume_db = 4.594
 autoplay = true
 bus = &"ambience"
+
+[node name="levelWinSfx" type="AudioStreamPlayer" parent="MusicManager" unique_id=1104658592]
+stream = ExtResource("4_tbgi4")
+volume_db = -11.277
+bus = &"music"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=312962812]
 top_level = true

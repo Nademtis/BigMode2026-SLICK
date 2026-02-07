@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var level_container: Node2D = $levelContainer
 @onready var intro_sequence_sfx: AudioStreamPlayer = $MusicManager/introSequenceSFX
+@onready var level_win_sfx: AudioStreamPlayer = $MusicManager/levelWinSfx
 
 @onready var animation_player: AnimationPlayer = $fadeInOut/AnimationPlayer
 
@@ -11,10 +12,14 @@ extends Node2D
 var level_index = 0 # start with 0
 
 var level_list : Array[String] = [
-"res://levels/level_1.tscn", 
-"res://levels/level_2.tscn",
-"res://levels/level_3.tscn",
-#"res://levels/level_4.tscn",
+#"res://levels/level_1.tscn", 
+#"res://levels/level_2.tscn",
+#"res://levels/level_3.tscn",
+"res://levels/level_4.tscn",
+#"res://levels/level_5.tscn",
+#"res://levels/level_6.tscn",
+#"res://levels/level_7.tscn",
+#"res://levels/level_8.tscn",
 ]
 const DEBUG_SKIP_INTRO : bool = true
 
@@ -44,10 +49,13 @@ func _setup_new_level() -> void:
 	var new_level_instance : Node2D = new_level_scene.instantiate()
 	level_container.add_child(new_level_instance)
 	
+	if level_win_sfx.playing:
+		await level_win_sfx.finished
+	
 	#audio and wait
 	if not DEBUG_SKIP_INTRO:
 		intro_sequence_sfx.play()
-		await get_tree().create_timer(4.5).timeout
+		await get_tree().create_timer(1.8).timeout
 	
 	animation_player.play("fade_out")
 
@@ -57,6 +65,10 @@ func restart_level() -> void:
 func start_new_level(to_restart : bool) -> void:
 	if not to_restart:
 		level_index += 1 
+	
+	if level_index != 0:
+		level_win_sfx.play()
+	
 	
 	print("main booting level: ", level_index)
 	next_level_path = level_list[level_index]
