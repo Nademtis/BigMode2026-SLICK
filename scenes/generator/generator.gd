@@ -1,7 +1,6 @@
 extends Interactable
 class_name Generator
 
-
 @export var electronic_object_list : Array[Node]
 @export var turn_back_on_time : float
 

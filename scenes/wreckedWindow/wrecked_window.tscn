@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cx7wjlb0fypwq"]
+
+[ext_resource type="Texture2D" uid="uid://dxqmee7ff3nwk" path="res://scenes/wreckedWindow/wreckedWindow.png" id="1_ta5w5"]
+
+[node name="WreckedWindow" type="Node2D" unique_id=23658402]
+
+[node name="window" type="Sprite2D" parent="." unique_id=1133232147]
+position = Vector2(0, -30)
+texture = ExtResource("1_ta5w5")
+offset = Vector2(0, 15.395)
