@@ -8,21 +8,23 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $fadeInOut/AnimationPlayer
 @onready var alarm_manager: CanvasLayer = $AlarmManager
 
+@onready var music: AudioStreamPlayer = $MusicManager/music
+
 #const FIRST_LEVEL_PATH: String = "res://levels/level_1.tscn"
 
 var level_index = 0 # start with 0
 
 var level_list : Array[String] = [
-#"res://levels/level_1.tscn", 
-#"res://levels/level_2.tscn",
-#"res://levels/level_3.tscn",
+"res://levels/level_1.tscn", 
+"res://levels/level_2.tscn",
+"res://levels/level_3.tscn",
 "res://levels/level_4.tscn",
 #"res://levels/level_5.tscn",
 #"res://levels/level_6.tscn",
 #"res://levels/level_7.tscn",
 #"res://levels/level_8.tscn",
 ]
-const DEBUG_SKIP_INTRO : bool = true
+const DEBUG_SKIP_INTRO : bool = false
 
 var next_level_path: String
 var current_level_path: String
@@ -61,6 +63,9 @@ func _setup_new_level() -> void:
 		await get_tree().create_timer(1.8).timeout
 	
 	animation_player.play("fade_out")
+	if level_index == 0:
+		await get_tree().create_timer(1).timeout
+		music.play()
 
 func restart_level() -> void:
 	start_new_level(true)
