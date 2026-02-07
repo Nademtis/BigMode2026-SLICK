@@ -16,7 +16,7 @@ var level_list : Array[String] = [
 #"res://levels/level_3.tscn",
 #"res://levels/level_4.tscn",
 ]
-const DEBUG_SKIP_INTRO : bool = true
+const DEBUG_SKIP_INTRO : bool = false
 
 var next_level_path: String
 var current_level_path: String
@@ -57,7 +57,8 @@ func restart_level() -> void:
 func start_new_level(to_restart : bool) -> void:
 	if not to_restart:
 		level_index += 1 
-		
+	
+	print("main booting level: ", level_index)
 	next_level_path = level_list[level_index]
 	animation_player.play("fade_to_black")
 
@@ -80,4 +81,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	#only if fade to black
 	if anim_name == "fade_to_black":
 		remove_active_cam()
-		start_new_level(false)
+		_setup_new_level()
+		
