@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cn1o35enbaser"]
+
+[ext_resource type="Script" uid="uid://ct41njnoijkny" path="res://scenes/laser/laser.gd" id="1_lmve3"]
+[ext_resource type="Texture2D" uid="uid://cxtlartjlvglo" path="res://scenes/laser/laserBaseLeft.png" id="2_lmve3"]
+
+[node name="LaserLeft" type="Line2D" unique_id=720139936 groups=["laser"]]
+points = PackedVector2Array(0, 0, -35, 0)
+width = 2.0
+default_color = Color(0.8980392, 0.2627451, 0.2627451, 1)
+script = ExtResource("1_lmve3")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2082425288]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1973115750]
+
+[node name="shadowLine2d" type="Line2D" parent="." unique_id=746596204]
+width = 2.0
+default_color = Color(0, 0, 0, 0.1254902)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=23356433]
+position = Vector2(-1, 0)
+texture = ExtResource("2_lmve3")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

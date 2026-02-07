@@ -52,9 +52,6 @@ func start_new_level(to_restart : bool) -> void:
 		
 	next_level_path = level_list[level_index]
 	animation_player.play("fade_to_black")
-	
-	
-
 
 func remove_active_cam() -> void:
 	var list := PhantomCameraManager.get_phantom_camera_2ds()

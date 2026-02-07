@@ -5,6 +5,9 @@ var is_powered : bool = true
 
 @onready var area_2d: Area2D = $Area2D
 
+var red_color: Color
+var no_color: Color = Color(0.0, 0.0, 0.0, 0.0)
+
 enum Direction {
 	RIGHT_LEFT,
 	DOWN_UP
@@ -18,14 +21,18 @@ enum Direction {
 func on_generator_power_changed(is_on: bool) -> void:
 	if is_on:
 		is_powered = true
-		visible = true
+		default_color = red_color
+		shadow_line_2d.visible = true
 		area_2d.monitoring = true
 	else:
 		is_powered = false
-		visible = false
+		default_color = no_color
+		shadow_line_2d.visible = false
 		area_2d.monitoring = false
 
 func _ready() -> void:
+	red_color = default_color
+	
 	set_coll()
 	set_shadow()
 	
