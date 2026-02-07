@@ -1,5 +1,7 @@
 extends Line2D
 #laser
+
+
 enum Direction {
 	RIGHT_LEFT,
 	DOWN_UP

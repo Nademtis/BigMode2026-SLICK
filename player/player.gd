@@ -28,7 +28,12 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	#current_speed = velocity.length()
-	
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("use"):
+		Events.emit_signal("player_interact_request")
+
 func _movement(delta: float) -> void:
 	input_dir = Input.get_vector("left", "right", "up", "down")
 

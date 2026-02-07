@@ -43,6 +43,7 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addon
 player=""
 laser=""
 camera=""
+interactable=""
 
 [input]
 
@@ -97,6 +98,7 @@ roll={
 2d_physics/layer_3="wall"
 2d_physics/layer_4="laser"
 2d_physics/layer_5="camera"
+2d_physics/layer_6="interactable"
 
 [physics]
 

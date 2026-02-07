@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://6jynurdwu2mp" path="res://scenes/cam.tscn" id="3_bt44k"]
 [ext_resource type="PackedScene" uid="uid://242sywhlbn6a" path="res://scenes/camera/s_camera.tscn" id="4_n46q3"]
 [ext_resource type="PackedScene" uid="uid://bgyyjuty1deyu" path="res://levels/laser.tscn" id="6_btoec"]
+[ext_resource type="PackedScene" uid="uid://1axbwmnga6hr" path="res://scenes/generator/generator.tscn" id="7_gwceb"]
 
 [sub_resource type="Curve2D" id="Curve2D_kx6l7"]
 _data = {
@@ -35,6 +36,9 @@ tile_map_data = PackedByteArray("AAAXAAkAAwABAAsAAAAYAAkAAwACAAsAAAAZAAkAAwADAAs
 [node name="Player" parent="Ysort" unique_id=1362207199 instance=ExtResource("2_jirdo")]
 y_sort_enabled = true
 position = Vector2(264, 152)
+
+[node name="generator" parent="Ysort" unique_id=1843199359 instance=ExtResource("7_gwceb")]
+position = Vector2(219, 129)
 
 [node name="CameraContainer" type="Node" parent="." unique_id=2071702717]
 
