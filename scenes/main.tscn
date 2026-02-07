@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://1mbj383q11tm" path="res://audio/sfx/Heist_SFX_Intro_Short.ogg" id="2_tbgi4"]
 [ext_resource type="AudioStream" uid="uid://bl6qsa1eknm8n" path="res://audio/ambience/Heist_Ambience_Room_Plus_Bleedthru.ogg" id="3_tbgi4"]
 [ext_resource type="AudioStream" uid="uid://bhhmc6pu1rqm6" path="res://audio/sfx/Heist_SFX_Player_Escape_Win.ogg" id="4_tbgi4"]
+[ext_resource type="Script" uid="uid://dn8bho6lwgldu" path="res://scenes/alarmManager.gd" id="6_tefeu"]
 
 [sub_resource type="Animation" id="Animation_0wfyh"]
 length = 0.001
@@ -106,4 +107,19 @@ color = Color(0, 0, 0, 1)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="fadeInOut" unique_id=1111916971]
 libraries/ = SubResource("AnimationLibrary_jyhfs")
 
+[node name="AlarmManager" type="CanvasLayer" parent="." unique_id=1210258451]
+script = ExtResource("6_tefeu")
+
+[node name="alarmColorRect" type="ColorRect" parent="AlarmManager" unique_id=1380314720]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="BlinkalarmTimer" type="Timer" parent="AlarmManager" unique_id=1036244754]
+wait_time = 0.5
+
 [connection signal="animation_finished" from="fadeInOut/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="AlarmManager/BlinkalarmTimer" to="AlarmManager" method="_on_blinkalarm_timer_timeout"]

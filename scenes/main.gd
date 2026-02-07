@@ -6,6 +6,7 @@ extends Node2D
 @onready var level_win_sfx: AudioStreamPlayer = $MusicManager/levelWinSfx
 
 @onready var animation_player: AnimationPlayer = $fadeInOut/AnimationPlayer
+@onready var alarm_manager: CanvasLayer = $AlarmManager
 
 #const FIRST_LEVEL_PATH: String = "res://levels/level_1.tscn"
 
@@ -35,6 +36,8 @@ func _ready() -> void:
 
 	next_level_path = level_list[level_index]
 	_setup_new_level()
+
+	Events.connect("call_the_cops", cops_has_been_called)
 
 func _setup_new_level() -> void:
 	for child in level_container.get_children():
@@ -69,7 +72,6 @@ func start_new_level(to_restart : bool) -> void:
 	if level_index != 0:
 		level_win_sfx.play()
 	
-	
 	print("main booting level: ", level_index)
 	next_level_path = level_list[level_index]
 	animation_player.play("fade_to_black")
@@ -94,4 +96,12 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fade_to_black":
 		remove_active_cam()
 		_setup_new_level()
+		
+func cops_has_been_called() -> void:
+	print("from main cops")
+	alarm_manager.call_the_cops()
+
+func stop_the_cops() -> void:
+	print("stop main cops")
+	alarm_manager.reset_level()
 		
