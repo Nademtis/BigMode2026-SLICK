@@ -10,7 +10,7 @@ class_name Player
 
 #roll
 @export var roll_speed_multiplier: float = 2
-@export var roll_duration: float = 0.1
+@export var roll_duration: float = 0.15
 @export var roll_cooldown: float = 5
 
 var can_move : bool = true
@@ -21,9 +21,12 @@ var move_dir: Vector2
 var last_move_dir: Vector2 = Vector2.DOWN
 
 func _process(_delta: float) -> void:
-	pass
-	#if is_rolling:
-		#print("rolling")
+	if is_rolling:
+		set_collision_mask_value(1, false)
+	else:
+		set_collision_mask_value(1, true)
+	
+	print(get_collision_layer_value(1))
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("roll"):

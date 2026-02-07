@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://nynbc3xk020x"]
 
 [ext_resource type="TileSet" uid="uid://6fjwlgmbwj7r" path="res://tiles/tileset.tres" id="1_jbhr8"]
+[ext_resource type="Script" uid="uid://dl762fe2utrkq" path="res://tiles/tilemap.gd" id="2_q7rja"]
 
 [node name="tilemap" type="TileMapLayer" unique_id=824752829]
 tile_set = ExtResource("1_jbhr8")
+script = ExtResource("2_q7rja")

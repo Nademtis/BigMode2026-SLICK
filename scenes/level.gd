@@ -6,6 +6,7 @@ extends Node2D
 var required_amount : int = 0
 var collected_amount : int = 0
 
+
 func _ready() -> void:
 	if not camera:
 		push_error("cam not defined")
@@ -17,7 +18,8 @@ func _ready() -> void:
 		required_amount += 1
 
 	Events.connect("player_trying_to_escape", check_if_level_complete)
-	
+
+		
 func _on_artifact_collected() -> void:
 	collected_amount += 1
 	

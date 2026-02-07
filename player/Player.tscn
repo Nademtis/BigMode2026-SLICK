@@ -66,7 +66,7 @@ height = 7.9999995
 
 [node name="Player" type="CharacterBody2D" unique_id=1789445710 groups=["player"]]
 collision_layer = 2
-collision_mask = 60
+collision_mask = 61
 motion_mode = 1
 script = ExtResource("1_ulp21")
 
