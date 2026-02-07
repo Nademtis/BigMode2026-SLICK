@@ -1,6 +1,13 @@
 [gd_scene format=4 uid="uid://dvdcuovvapvll"]
 
 [ext_resource type="Script" uid="uid://d2wqtsqgqmqno" path="res://player/player.gd" id="1_ulp21"]
+[ext_resource type="AudioStream" uid="uid://dvme6ay80um4j" path="res://audio/sfx/player/Footsteps/carpet/Heist_SFX_Footstep_Carpet_1.ogg" id="2_06mnu"]
+[ext_resource type="AudioStream" uid="uid://capgy2tvqjpl2" path="res://audio/sfx/player/Footsteps/carpet/Heist_SFX_Footstep_Carpet_2.ogg" id="3_mhpjh"]
+[ext_resource type="AudioStream" uid="uid://ban7fcyxcpmac" path="res://audio/sfx/player/Footsteps/carpet/Heist_SFX_Footstep_Carpet_3.ogg" id="4_ndjxb"]
+[ext_resource type="AudioStream" uid="uid://dmuxaq105ere8" path="res://audio/sfx/player/Footsteps/carpet/Heist_SFX_Footstep_Carpet_4.ogg" id="5_5qrx2"]
+[ext_resource type="AudioStream" uid="uid://dx0tt8i0v1" path="res://audio/sfx/player/Footsteps/carpet/Heist_SFX_Footstep_Carpet_5.ogg" id="6_b32pr"]
+[ext_resource type="AudioStream" uid="uid://da08nfgpl1x1b" path="res://audio/sfx/player/Footsteps/carpet/Heist_SFX_Footstep_Carpet_6.ogg" id="7_hbkom"]
+[ext_resource type="AudioStream" uid="uid://n04qqo5ntn3e" path="res://audio/sfx/player/Footsteps/carpet/Heist_SFX_Footstep_Carpet_8.ogg" id="8_d4g0h"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_ulp21"]
 _data = PackedByteArray("AAADAAUAAAABAAAAIAAAACAAAACEAAAAUklGRnwAAABXRUJQVlA4THAAAAAvH8AHEC+gpm0jONXt3w7UqQmAhM1xQhvcEgmQ0DhgNfv/nXH+A0CU98XWfM8Bq8i22tAEvAICggIkJBLa8y8mM3T4juj/BKhdBF0AiDoPEbFApOAWCW1QBAsQ8+Cn8w4qibE3l/LU5RKr7NMlm7dy")
@@ -64,6 +71,16 @@ animations = [{
 radius = 2.0
 height = 7.9999995
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v4f8b"]
+streams_count = 7
+stream_0/stream = ExtResource("2_06mnu")
+stream_1/stream = ExtResource("3_mhpjh")
+stream_2/stream = ExtResource("4_ndjxb")
+stream_3/stream = ExtResource("5_5qrx2")
+stream_4/stream = ExtResource("6_b32pr")
+stream_5/stream = ExtResource("7_hbkom")
+stream_6/stream = ExtResource("8_d4g0h")
+
 [node name="Player" type="CharacterBody2D" unique_id=1789445710 groups=["player"]]
 collision_layer = 2
 collision_mask = 61
@@ -98,3 +115,10 @@ metadata/_aseprite_wizard_source_file_hash_ = "eaf937320563db58fa698598471ec89e"
 position = Vector2(0, -2)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_83hs8")
+
+[node name="SFXwalkCarpet" type="AudioStreamPlayer2D" parent="." unique_id=575742629]
+stream = SubResource("AudioStreamRandomizer_v4f8b")
+bus = &"sfx"
+
+[node name="stepTimer" type="Timer" parent="." unique_id=520678294]
+wait_time = 0.2

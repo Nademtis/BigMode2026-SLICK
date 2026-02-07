@@ -20,13 +20,16 @@ var input_dir: Vector2
 var move_dir: Vector2
 var last_move_dir: Vector2 = Vector2.DOWN
 
+#audio
+@onready var sfx_walk_carpet: AudioStreamPlayer2D = $SFXwalkCarpet
+@onready var step_timer: Timer = $stepTimer
+
+
 func _process(_delta: float) -> void:
 	if is_rolling:
 		set_collision_mask_value(1, false)
 	else:
 		set_collision_mask_value(1, true)
-	
-	print(get_collision_layer_value(1))
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("roll"):
@@ -47,6 +50,11 @@ func _movement(delta: float) -> void:
 	input_dir = Input.get_vector("left", "right", "up", "down")
 
 	if input_dir != Vector2.ZERO:
+		#audio
+		if step_timer.is_stopped():
+			sfx_walk_carpet.play()
+			step_timer.start()
+			
 		last_move_dir = input_dir.normalized()
 		_update_animation(input_dir)
 		velocity = velocity.move_toward(
