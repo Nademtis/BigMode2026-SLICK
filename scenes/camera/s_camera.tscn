@@ -12,7 +12,7 @@ texture = ExtResource("1_sgemo")
 
 [node name="rotater" type="Node2D" parent="." unique_id=1173067423]
 position = Vector2(-0.31370735, -0.31370926)
-rotation = 6.3324823
+rotation = 6.2831855
 
 [node name="camera" type="Sprite2D" parent="rotater" unique_id=420617177]
 position = Vector2(2.1785238, -2.79704)
@@ -28,6 +28,7 @@ collision_mask = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="rotater/Area2D" unique_id=2024322891]
 color = Color(1, 1, 1, 0.1882353)
+polygon = PackedVector2Array(2.9615846, -1.1086122, 66.044914, -27.423906, 75.4732, -21.564188, 82.617096, -12.017326, 84.40339, -4.4395924, 83.199905, 3.9720573, 76.32636, 13.553785, 67.79333, 20.544245)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rotater/Area2D" unique_id=1924365688]
 visible = false

@@ -12,10 +12,17 @@ extends Node2D
 #@export var idle_time : float = 5
 @export var rotation_speed: float = 5.0 # higher = faster
 
+#area for seraching for player
+@onready var area_2d: Area2D = $rotater/Area2D
+
+
 @onready var timer: Timer = $Timer
 
 var target_rotation: float = 0.0
 var current_marker_index : int = 0
+
+
+var is_powered : bool = true
 
 func _ready() -> void:
 	var polygon : PackedVector2Array = collision_polygon_2d.polygon
@@ -34,6 +41,19 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	rotater.rotation = lerp_angle(rotater.rotation, target_rotation, delta * rotation_speed)
 
+
+func on_generator_power_changed(is_on: bool) -> void:
+	if is_on:
+		is_powered = true
+		area_2d.monitoring = true
+		polygon_2d.visible = true
+		set_process(true)
+	else:
+		is_powered = false
+		area_2d.monitoring = false
+		polygon_2d.visible = false
+		set_process(false)
+		
 
 func look_at_marker(marker : Marker2D, duration : float) -> void:
 	var dir: Vector2 = (marker.global_position - global_position).normalized()
@@ -54,7 +74,7 @@ func start_look_sequence() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("camera found player")
+		print("!!!camera found player!!!")
 
 
 func _on_timer_timeout() -> void:

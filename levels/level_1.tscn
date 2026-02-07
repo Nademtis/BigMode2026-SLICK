@@ -37,8 +37,9 @@ tile_map_data = PackedByteArray("AAAXAAkAAwABAAsAAAAYAAkAAwACAAsAAAAZAAkAAwADAAs
 y_sort_enabled = true
 position = Vector2(264, 152)
 
-[node name="generator" parent="Ysort" unique_id=1843199359 instance=ExtResource("7_gwceb")]
+[node name="generator" parent="Ysort" unique_id=1843199359 node_paths=PackedStringArray("electronic_object_list") instance=ExtResource("7_gwceb")]
 position = Vector2(219, 129)
+electronic_object_list = [NodePath("../../SCameraContainer/SCamera"), NodePath("../../LaserContainer/Laser"), NodePath("../../LaserContainer/Laser2")]
 
 [node name="CameraContainer" type="Node" parent="." unique_id=2071702717]
 

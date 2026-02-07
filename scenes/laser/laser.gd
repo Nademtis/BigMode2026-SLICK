@@ -1,15 +1,29 @@
-extends Line2D
+extends Line2D 
 #laser
 
+var is_powered : bool = true
+
+@onready var area_2d: Area2D = $Area2D
 
 enum Direction {
 	RIGHT_LEFT,
 	DOWN_UP
 }
+
 @onready var collision_polygon_2d: CollisionPolygon2D = $Area2D/CollisionPolygon2D
 @export var direction: Direction = Direction.RIGHT_LEFT
 
 @onready var shadow_line_2d: Line2D = $shadowLine2d
+
+func on_generator_power_changed(is_on: bool) -> void:
+	if is_on:
+		is_powered = true
+		visible = true
+		area_2d.monitoring = true
+	else:
+		is_powered = false
+		visible = false
+		area_2d.monitoring = false
 
 func _ready() -> void:
 	set_coll()
@@ -17,7 +31,9 @@ func _ready() -> void:
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("laser found player")
+		print("!!!laser found player!!!")
+		#TODO slow player?
+		#TODO start alarm and countdown
 
 func set_shadow() -> void:
 	if direction == Direction.RIGHT_LEFT:
