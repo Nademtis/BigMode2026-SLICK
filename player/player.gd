@@ -20,9 +20,10 @@ var input_dir: Vector2
 var move_dir: Vector2
 var last_move_dir: Vector2 = Vector2.DOWN
 
-func _process(delta: float) -> void:
-	if is_rolling:
-		print("rolling")
+func _process(_delta: float) -> void:
+	pass
+	#if is_rolling:
+		#print("rolling")
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("roll"):

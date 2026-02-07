@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cdpnqsscuinsg"]
+
+[ext_resource type="Script" uid="uid://da7oge7b8l60t" path="res://scenes/wreckedWindow/level_start_end.gd" id="1_brhsc"]
+[ext_resource type="PackedScene" uid="uid://cx7wjlb0fypwq" path="res://scenes/wreckedWindow/wrecked_window.tscn" id="1_xdlkx"]
+[ext_resource type="Texture2D" uid="uid://c6wst0ab47v5q" path="res://scenes/wreckedWindow/glassOnGround.png" id="2_brhsc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdlkx"]
+radius = 16.124516
+
+[node name="levelStartEnd" type="Node2D" unique_id=2107755091]
+y_sort_enabled = true
+script = ExtResource("1_brhsc")
+
+[node name="WreckedWindow" parent="." unique_id=23658402 instance=ExtResource("1_xdlkx")]
+z_as_relative = false
+
+[node name="GlassOnGround" type="Sprite2D" parent="." unique_id=1455341433]
+y_sort_enabled = true
+position = Vector2(-1, 0)
+texture = ExtResource("2_brhsc")
+offset = Vector2(0, 23.325)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1969758903]
+position = Vector2(-468, -121)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1026783176]
+position = Vector2(467, 129)
+shape = SubResource("CircleShape2D_xdlkx")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
