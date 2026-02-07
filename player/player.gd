@@ -12,6 +12,8 @@ class_name Player
 @export var roll_speed_multiplier: float = 2
 @export var roll_duration: float = 0.28
 @export var roll_cooldown: float = 5
+@export var slide_recovery_time: float = 0.15
+var is_slide_recovering: bool = false # used to make slide animation longer without changing logic
 
 var can_move : bool = true
 var is_rolling: bool = false
@@ -100,8 +102,14 @@ func _try_roll() -> void:
 	# animated_sprite_2d.play("roll")
 
 	await get_tree().create_timer(roll_duration).timeout
+	
 	is_rolling = false
+	is_slide_recovering = true
 	can_move = true
+	await get_tree().create_timer(slide_recovery_time).timeout
+	
+	is_slide_recovering = false
+	
 	await get_tree().create_timer(roll_cooldown).timeout
 
 func _play_slide_animation(dir: Vector2) -> void:
@@ -116,7 +124,7 @@ func _play_slide_animation(dir: Vector2) -> void:
 			animated_sprite_2d.play("slide_down")
 
 func _update_animation(dir: Vector2) -> void:
-	if is_rolling:
+	if is_rolling or is_slide_recovering:
 		return
 	
 	if dir == Vector2.ZERO:
