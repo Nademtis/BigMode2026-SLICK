@@ -16,7 +16,7 @@ var level_list : Array[String] = [
 #"res://levels/level_3.tscn",
 #"res://levels/level_4.tscn",
 ]
-const DEBUG_SKIP_INTRO : bool = false
+const DEBUG_SKIP_INTRO : bool = true
 
 var next_level_path: String
 var current_level_path: String
