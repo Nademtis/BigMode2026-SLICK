@@ -44,7 +44,6 @@ func _ready() -> void:
 	
 	screen_on.visible = true
 	radial_indicator.visible = false
-		
 
 func _process(_delta: float) -> void:
 	if is_turned_on:
@@ -58,6 +57,9 @@ func _process(_delta: float) -> void:
 	_update_radial_indicator()
 
 func update_electronic_objects() -> void:
+	if not turn_back_on_timer.is_stopped():
+		return
+		
 	is_turned_on = !is_turned_on
 
 	print("generator is now: ", is_turned_on)
