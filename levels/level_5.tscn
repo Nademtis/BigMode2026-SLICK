@@ -3,9 +3,14 @@
 [ext_resource type="Script" uid="uid://dxq6dqwn73v4b" path="res://scenes/level.gd" id="1_a58qw"]
 [ext_resource type="PackedScene" uid="uid://nynbc3xk020x" path="res://tiles/tilemap.tscn" id="2_ij65d"]
 [ext_resource type="PackedScene" uid="uid://u3ynonklp87j" path="res://scenes/artifacts/artifact.tscn" id="4_gder6"]
+[ext_resource type="Texture2D" uid="uid://b6y0xi35gjb58" path="res://scenes/artifacts/art/vase3.png" id="4_ij65d"]
+[ext_resource type="AudioStream" uid="uid://dco1qwy7hn8jv" path="res://scenes/artifacts/sfx/Heist_SFX_Grab_Vase.ogg" id="5_gci8k"]
 [ext_resource type="PackedScene" uid="uid://dvdcuovvapvll" path="res://player/Player.tscn" id="5_hv08k"]
+[ext_resource type="Texture2D" uid="uid://c757jdhubfcd8" path="res://scenes/artifacts/art/painting2.png" id="6_gder6"]
 [ext_resource type="PackedScene" uid="uid://cdpnqsscuinsg" path="res://scenes/wreckedWindow/level_start_end.tscn" id="6_p0827"]
 [ext_resource type="PackedScene" uid="uid://6jynurdwu2mp" path="res://scenes/cam.tscn" id="7_brp6y"]
+[ext_resource type="AudioStream" uid="uid://bhch2fpwt0g4u" path="res://scenes/artifacts/sfx/Heist_SFX_Grab_Painting.ogg" id="7_hv08k"]
+[ext_resource type="Texture2D" uid="uid://daparlmcormkm" path="res://scenes/artifacts/art/painting1.png" id="8_gci8k"]
 [ext_resource type="PackedScene" uid="uid://cn1o35enbaser" path="res://scenes/laserLeft.tscn" id="10_bon8i"]
 [ext_resource type="PackedScene" uid="uid://8b0f8y5t7tph" path="res://scenes/laserRight.tscn" id="11_av2kh"]
 
@@ -42,9 +47,18 @@ y_sort_enabled = true
 
 [node name="Artifact" parent="Ysort/ArtifactContainer" unique_id=742173707 instance=ExtResource("4_gder6")]
 position = Vector2(289, 308)
+sprite_texture = ExtResource("4_ij65d")
+pickup_sfx = ExtResource("5_gci8k")
 
 [node name="Artifact2" parent="Ysort/ArtifactContainer" unique_id=1896995903 instance=ExtResource("4_gder6")]
-position = Vector2(388, 194)
+position = Vector2(359, 171)
+sprite_texture = ExtResource("6_gder6")
+pickup_sfx = ExtResource("7_hv08k")
+
+[node name="Artifact3" parent="Ysort/ArtifactContainer" unique_id=310655195 instance=ExtResource("4_gder6")]
+position = Vector2(417, 169)
+sprite_texture = ExtResource("8_gci8k")
+pickup_sfx = ExtResource("7_hv08k")
 
 [node name="Player" parent="Ysort" unique_id=1362207199 instance=ExtResource("5_hv08k")]
 y_sort_enabled = true

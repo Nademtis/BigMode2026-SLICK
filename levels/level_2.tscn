@@ -4,8 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://nynbc3xk020x" path="res://tiles/tilemap.tscn" id="2_ep78u"]
 [ext_resource type="PackedScene" uid="uid://u3ynonklp87j" path="res://scenes/artifacts/artifact.tscn" id="3_dfjjl"]
 [ext_resource type="PackedScene" uid="uid://dvdcuovvapvll" path="res://player/Player.tscn" id="4_at1ld"]
+[ext_resource type="Texture2D" uid="uid://daparlmcormkm" path="res://scenes/artifacts/art/painting1.png" id="4_dfjjl"]
+[ext_resource type="AudioStream" uid="uid://bhch2fpwt0g4u" path="res://scenes/artifacts/sfx/Heist_SFX_Grab_Painting.ogg" id="5_at1ld"]
 [ext_resource type="PackedScene" uid="uid://cdpnqsscuinsg" path="res://scenes/wreckedWindow/level_start_end.tscn" id="5_sd18g"]
 [ext_resource type="PackedScene" uid="uid://6jynurdwu2mp" path="res://scenes/cam.tscn" id="6_vm7no"]
+[ext_resource type="PackedScene" uid="uid://cchcjej6lwifp" path="res://misc/text.tscn" id="9_at1ld"]
 
 [sub_resource type="Curve2D" id="Curve2D_kx6l7"]
 _data = {
@@ -39,7 +42,9 @@ metadata/_edit_lock_ = true
 y_sort_enabled = true
 
 [node name="Artifact" parent="Ysort/ArtifactContainer" unique_id=742173707 instance=ExtResource("3_dfjjl")]
-position = Vector2(503, 312)
+position = Vector2(503, 269)
+sprite_texture = ExtResource("4_dfjjl")
+pickup_sfx = ExtResource("5_at1ld")
 
 [node name="Player" parent="Ysort" unique_id=1362207199 instance=ExtResource("4_at1ld")]
 y_sort_enabled = true
@@ -63,3 +68,11 @@ follow_path = NodePath("..")
 [node name="SCameraContainer" type="Node2D" parent="." unique_id=954029070]
 
 [node name="LaserContainer" type="Node2D" parent="." unique_id=948117287]
+
+[node name="RichTextLabel" parent="." unique_id=1034662909 instance=ExtResource("9_at1ld")]
+offset_left = 38.0
+offset_top = 47.0
+offset_right = 758.0
+offset_bottom = 397.0
+theme_override_font_sizes/normal_font_size = 16
+text = "SPACE to slide around"

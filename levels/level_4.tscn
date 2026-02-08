@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dxq6dqwn73v4b" path="res://scenes/level.gd" id="1_04hp8"]
 [ext_resource type="PackedScene" uid="uid://nynbc3xk020x" path="res://tiles/tilemap.tscn" id="2_8hlpj"]
+[ext_resource type="Texture2D" uid="uid://ciukm10up05tq" path="res://scenes/artifacts/art/glasses.png" id="4_sc6c1"]
 [ext_resource type="PackedScene" uid="uid://u3ynonklp87j" path="res://scenes/artifacts/artifact.tscn" id="4_vru0x"]
 [ext_resource type="PackedScene" uid="uid://dvdcuovvapvll" path="res://player/Player.tscn" id="5_5oqfd"]
+[ext_resource type="AudioStream" uid="uid://cseijmitf0131" path="res://scenes/artifacts/sfx/Heist_SFX_Grab_Shades.ogg" id="5_ng40l"]
 [ext_resource type="PackedScene" uid="uid://cdpnqsscuinsg" path="res://scenes/wreckedWindow/level_start_end.tscn" id="6_8mt0c"]
 [ext_resource type="PackedScene" uid="uid://6jynurdwu2mp" path="res://scenes/cam.tscn" id="7_dp2yl"]
 [ext_resource type="PackedScene" uid="uid://242sywhlbn6a" path="res://scenes/camera/s_camera.tscn" id="8_a7qdg"]
@@ -40,7 +42,9 @@ metadata/_edit_lock_ = true
 y_sort_enabled = true
 
 [node name="Artifact" parent="Ysort/ArtifactContainer" unique_id=742173707 instance=ExtResource("4_vru0x")]
-position = Vector2(445, 275)
+position = Vector2(444, 274)
+sprite_texture = ExtResource("4_sc6c1")
+pickup_sfx = ExtResource("5_ng40l")
 
 [node name="Player" parent="Ysort" unique_id=1362207199 instance=ExtResource("5_5oqfd")]
 y_sort_enabled = true

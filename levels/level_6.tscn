@@ -4,12 +4,18 @@
 [ext_resource type="PackedScene" uid="uid://nynbc3xk020x" path="res://tiles/tilemap.tscn" id="2_kx1xp"]
 [ext_resource type="PackedScene" uid="uid://1axbwmnga6hr" path="res://scenes/generator/generator.tscn" id="3_m516p"]
 [ext_resource type="PackedScene" uid="uid://u3ynonklp87j" path="res://scenes/artifacts/artifact.tscn" id="4_l3m5x"]
+[ext_resource type="Texture2D" uid="uid://csshlqrxh8hgc" path="res://scenes/artifacts/art/vase2.png" id="5_6s2qa"]
 [ext_resource type="PackedScene" uid="uid://dvdcuovvapvll" path="res://player/Player.tscn" id="5_t207q"]
+[ext_resource type="AudioStream" uid="uid://dco1qwy7hn8jv" path="res://scenes/artifacts/sfx/Heist_SFX_Grab_Vase.ogg" id="6_eo5pq"]
 [ext_resource type="PackedScene" uid="uid://cdpnqsscuinsg" path="res://scenes/wreckedWindow/level_start_end.tscn" id="6_g7b2g"]
 [ext_resource type="PackedScene" uid="uid://6jynurdwu2mp" path="res://scenes/cam.tscn" id="7_6s2qa"]
+[ext_resource type="Texture2D" uid="uid://c6c5b471b4vh4" path="res://scenes/artifacts/art/trumpet.png" id="7_urb8h"]
 [ext_resource type="PackedScene" uid="uid://242sywhlbn6a" path="res://scenes/camera/s_camera.tscn" id="8_eo5pq"]
+[ext_resource type="AudioStream" uid="uid://dtg71vfgtw523" path="res://scenes/artifacts/sfx/Heist_SFX_Grab_Trumpet.ogg" id="8_f2ri3"]
+[ext_resource type="Texture2D" uid="uid://ciukm10up05tq" path="res://scenes/artifacts/art/glasses.png" id="9_4cuco"]
 [ext_resource type="PackedScene" uid="uid://bgyyjuty1deyu" path="res://scenes/laserUpDown.tscn" id="9_urb8h"]
 [ext_resource type="PackedScene" uid="uid://cn1o35enbaser" path="res://scenes/laserLeft.tscn" id="10_f2ri3"]
+[ext_resource type="AudioStream" uid="uid://cseijmitf0131" path="res://scenes/artifacts/sfx/Heist_SFX_Grab_Shades.ogg" id="10_rcw3v"]
 [ext_resource type="PackedScene" uid="uid://8b0f8y5t7tph" path="res://scenes/laserRight.tscn" id="11_4cuco"]
 
 [sub_resource type="Curve2D" id="Curve2D_kx6l7"]
@@ -49,13 +55,19 @@ turn_back_on_time = 3.0
 y_sort_enabled = true
 
 [node name="Artifact" parent="Ysort/ArtifactContainer" unique_id=742173707 instance=ExtResource("4_l3m5x")]
-position = Vector2(378, 160)
+position = Vector2(393, 148)
+sprite_texture = ExtResource("5_6s2qa")
+pickup_sfx = ExtResource("6_eo5pq")
 
 [node name="Artifact2" parent="Ysort/ArtifactContainer" unique_id=1896995903 instance=ExtResource("4_l3m5x")]
-position = Vector2(269, 150)
+position = Vector2(267, 150)
+sprite_texture = ExtResource("7_urb8h")
+pickup_sfx = ExtResource("8_f2ri3")
 
 [node name="Artifact3" parent="Ysort/ArtifactContainer" unique_id=1198021298 instance=ExtResource("4_l3m5x")]
 position = Vector2(450, 327)
+sprite_texture = ExtResource("9_4cuco")
+pickup_sfx = ExtResource("10_rcw3v")
 
 [node name="Player" parent="Ysort" unique_id=1362207199 instance=ExtResource("5_t207q")]
 y_sort_enabled = true

@@ -21,10 +21,10 @@ func _ready() -> void:
 
 func _on_collected() -> void:
 	print("artifact collected")
+	audio_stream_player_2d.play()
 	artifact_collected.emit()
-	#audio_stream_player_2d.play() #TODO uncomment
 	
 	# wait for sound to finish (optional)
-	#await audio_stream_player_2d.finished #TODO uncomment
-	
+	visible = false
+	await audio_stream_player_2d.finished #TODO uncomment
 	queue_free()

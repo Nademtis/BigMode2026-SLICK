@@ -33,12 +33,13 @@ texture = SubResource("GradientTexture2D_8sx1q")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=562366705]
 position = Vector2(0.5, -7.5)
+volume_db = 3.039
+bus = &"sfx"
 
 [node name="Interactable" parent="." unique_id=2120554612 instance=ExtResource("2_8sx1q")]
 position = Vector2(0.5, -7.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=718750658]
-visible = false
 shape = SubResource("CircleShape2D_vqsag")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=27094539]
