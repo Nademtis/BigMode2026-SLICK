@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://bs28vifi5uoq1" path="res://scenes/Interactable.tscn" id="5_xbvhi"]
 [ext_resource type="Shader" uid="uid://c23y440mp0c6d" path="res://misc/shaders/radialMenu.gdshader" id="6_bdebr"]
 [ext_resource type="Texture2D" uid="uid://ctbt8x1cop8fq" path="res://icon.svg" id="7_3lw3g"]
+[ext_resource type="AudioStream" uid="uid://dpdd1gl2hbf61" path="res://scenes/camera/sfx/Heist_SFX_Camera_Hum_Loop.ogg" id="8_688rg"]
+[ext_resource type="AudioStream" uid="uid://b0vexlv2e2aae" path="res://scenes/generator/sfx/Heist_SFX_Button_Machine_Countdown.ogg" id="9_eb5bh"]
+[ext_resource type="AudioStream" uid="uid://b1wu3bckni7g8" path="res://scenes/generator/sfx/Heist_SFX_Button_Machine_On.ogg" id="9_qn5gh"]
+[ext_resource type="AudioStream" uid="uid://bffgnfst0t7b0" path="res://scenes/generator/sfx/Heist_SFX_Button_Machine_Off.ogg" id="10_ha5lx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xbvhi"]
 radius = 32.0
@@ -81,5 +85,21 @@ texture = ExtResource("7_3lw3g")
 
 [node name="Timer" type="Timer" parent="." unique_id=1030783613]
 one_shot = true
+
+[node name="sfxHum" type="AudioStreamPlayer2D" parent="." unique_id=1569450481]
+stream = ExtResource("8_688rg")
+volume_db = -10.468
+max_distance = 150.0
+
+[node name="sfxOn" type="AudioStreamPlayer2D" parent="." unique_id=412248996]
+stream = ExtResource("9_qn5gh")
+
+[node name="sfxOff" type="AudioStreamPlayer2D" parent="." unique_id=1525991785]
+stream = ExtResource("10_ha5lx")
+
+[node name="sfxCountdown" type="AudioStreamPlayer2D" parent="." unique_id=268260993]
+stream = ExtResource("9_eb5bh")
+volume_db = -11.143
+bus = &"sfx"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

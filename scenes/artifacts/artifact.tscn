@@ -38,6 +38,7 @@ position = Vector2(0.5, -7.5)
 position = Vector2(0.5, -7.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=718750658]
+visible = false
 shape = SubResource("CircleShape2D_vqsag")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=27094539]

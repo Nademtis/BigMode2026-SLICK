@@ -11,6 +11,13 @@ class_name Generator
 @onready var interactable: Interactable = $Interactable
 @onready var screen_on: Sprite2D = $base/screenON
 
+
+#sfx
+@onready var sfx_hum: AudioStreamPlayer2D = $sfxHum
+@onready var sfx_on: AudioStreamPlayer2D = $sfxOn
+@onready var sfx_off: AudioStreamPlayer2D = $sfxOff
+@onready var sfx_countdown: AudioStreamPlayer2D = $sfxCountdown
+
 #controlling stuff
 var is_turned_on : bool = true
 
@@ -21,6 +28,7 @@ var shake_strength : float = 0.15
 signal power_state_changed(is_on: bool)
 
 func _ready() -> void:
+	sfx_hum.play()
 	original_position = position # used for shaking and resetting position back
 	interactable.connect("player_interacted", update_electronic_objects)
 	
@@ -72,6 +80,11 @@ func _update_radial_indicator() -> void:
 func turn_generator_on() -> void:
 	screen_on.visible = true
 	radial_indicator.visible = false
+	
+	sfx_hum.play()
+	sfx_on.play()
+	sfx_countdown.stop()
+	
 	#update_electronic_objects()
 	
 
@@ -80,6 +93,9 @@ func turn_generator_off()  -> void:
 	radial_indicator.visible = true
 	turn_back_on_timer.start()
 	
+	sfx_hum.play()
+	sfx_off.play()
+	sfx_countdown.play()
 
 
 func _on_timer_timeout() -> void:

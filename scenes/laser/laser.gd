@@ -4,6 +4,7 @@ extends Line2D
 var is_powered : bool = true
 
 @onready var area_2d: Area2D = $Area2D
+@onready var laser_sfx: Node2D = $laserSFX
 
 var red_color: Color
 var no_color: Color = Color(0.0, 0.0, 0.0, 0.0)
@@ -24,15 +25,16 @@ func on_generator_power_changed(is_on: bool) -> void:
 		default_color = red_color
 		shadow_line_2d.visible = true
 		area_2d.monitoring = true
+		laser_sfx.play()
 	else:
 		is_powered = false
 		default_color = no_color
 		shadow_line_2d.visible = false
 		area_2d.monitoring = false
+		laser_sfx.stop()
 
 func _ready() -> void:
 	red_color = default_color
-	
 	set_coll()
 	set_shadow()
 	

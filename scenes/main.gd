@@ -20,14 +20,14 @@ var level_index = 0 # start with 0
 var level_list : Array[String] = [
 #"res://levels/level_1.tscn", 
 #"res://levels/level_2.tscn",
-"res://levels/level_3.tscn",
-"res://levels/level_4.tscn",
-"res://levels/level_5.tscn",
-#"res://levels/level_6.tscn",
+#"res://levels/level_3.tscn",
+#"res://levels/level_4.tscn",
+#"res://levels/level_5.tscn",
+"res://levels/level_6.tscn",
 #"res://levels/level_7.tscn",
 #"res://levels/level_8.tscn",
 ]
-const DEBUG_SKIP_INTRO : bool = true
+const DEBUG_SKIP_INTRO : bool = false
 
 var next_level_path: String
 var current_level_path: String

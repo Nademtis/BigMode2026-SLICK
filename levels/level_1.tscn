@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://nynbc3xk020x" path="res://tiles/tilemap.tscn" id="1_vn7o3"]
 [ext_resource type="PackedScene" uid="uid://dvdcuovvapvll" path="res://player/Player.tscn" id="2_jirdo"]
 [ext_resource type="PackedScene" uid="uid://6jynurdwu2mp" path="res://scenes/cam.tscn" id="3_bt44k"]
+[ext_resource type="Texture2D" uid="uid://rx0afi23sm6i" path="res://scenes/artifacts/art/vase1.png" id="4_l53as"]
+[ext_resource type="Texture2D" uid="uid://csshlqrxh8hgc" path="res://scenes/artifacts/art/vase2.png" id="5_3sk1a"]
 [ext_resource type="PackedScene" uid="uid://u3ynonklp87j" path="res://scenes/artifacts/artifact.tscn" id="5_l53as"]
 [ext_resource type="PackedScene" uid="uid://cdpnqsscuinsg" path="res://scenes/wreckedWindow/level_start_end.tscn" id="6_3sk1a"]
 
@@ -40,9 +42,11 @@ y_sort_enabled = true
 
 [node name="Artifact" parent="Ysort/ArtifactContainer" unique_id=742173707 instance=ExtResource("5_l53as")]
 position = Vector2(434, 289)
+sprite_texture = ExtResource("4_l53as")
 
 [node name="Artifact2" parent="Ysort/ArtifactContainer" unique_id=1896995903 instance=ExtResource("5_l53as")]
 position = Vector2(343, 192)
+sprite_texture = ExtResource("5_3sk1a")
 
 [node name="Player" parent="Ysort" unique_id=1362207199 instance=ExtResource("2_jirdo")]
 y_sort_enabled = true

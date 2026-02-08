@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ya1fgtapwrmi"]
+
+[ext_resource type="AudioStream" uid="uid://cs7nyo484275q" path="res://scenes/laser/Heist_SFX_Laser_Loop.ogg" id="1_b7a6m"]
+
+[node name="HeistSfxLaserLoop" type="AudioStreamPlayer2D" unique_id=1650232210]
+stream = ExtResource("1_b7a6m")
+autoplay = true
+max_distance = 100.0
+bus = &"sfx"

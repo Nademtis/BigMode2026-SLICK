@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct41njnoijkny" path="res://scenes/laser/laser.gd" id="1_lmve3"]
 [ext_resource type="Texture2D" uid="uid://cxtlartjlvglo" path="res://scenes/laser/laserBaseLeft.png" id="2_lmve3"]
+[ext_resource type="PackedScene" uid="uid://ya1fgtapwrmi" path="res://scenes/laser/laser_sfx.tscn" id="3_kxrf1"]
 
 [node name="LaserLeft" type="Line2D" unique_id=720139936 groups=["laser"]]
 points = PackedVector2Array(0, 0, -35, 0)
@@ -22,5 +23,7 @@ default_color = Color(0, 0, 0, 0.1254902)
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=23356433]
 position = Vector2(-1, 0)
 texture = ExtResource("2_lmve3")
+
+[node name="laserSFX" parent="." unique_id=1310342921 instance=ExtResource("3_kxrf1")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
