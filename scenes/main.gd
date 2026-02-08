@@ -35,6 +35,7 @@ var current_level_path: String
 func _ready() -> void:
 	get_window().focus_entered.connect(_on_window_focus_entered)
 	get_window().focus_exited.connect(_on_window_focus_exited)
+	focus_menu.visible = false
 
 	Events.connect("load_new_level", start_new_level)
 	Events.connect("restart_current_level" , restart_level)
