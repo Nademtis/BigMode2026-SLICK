@@ -40,9 +40,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		var player : Player = body
 		if !player.is_rolling:
-			print("!!!laser found player!!!")
-		#TODO slow player?
-		#TODO start alarm and countdown
+			Events.emit_signal("call_the_cops")
 
 func set_shadow() -> void:
 	if direction == Direction.RIGHT_LEFT:

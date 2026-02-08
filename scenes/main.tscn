@@ -6,7 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://bl6qsa1eknm8n" path="res://audio/ambience/Heist_Ambience_Room_Plus_Bleedthru.ogg" id="3_tbgi4"]
 [ext_resource type="AudioStream" uid="uid://bhhmc6pu1rqm6" path="res://audio/sfx/Heist_SFX_Player_Escape_Win.ogg" id="4_tbgi4"]
 [ext_resource type="AudioStream" uid="uid://bu8u23dpluujv" path="res://audio/music/Heist_Music_Sneaky_Vibes_Loop.ogg" id="5_o6xl0"]
+[ext_resource type="AudioStream" uid="uid://daf0snus7cr0n" path="res://audio/music/Heist_SFX_Alarm_Loop.ogg" id="6_choun"]
 [ext_resource type="Script" uid="uid://dn8bho6lwgldu" path="res://scenes/alarmManager.gd" id="6_tefeu"]
+[ext_resource type="AudioStream" uid="uid://cdfiwmq23f2sq" path="res://audio/sfx/player/Heist_SFX_Player_Caught.ogg" id="7_85g3d"]
 
 [sub_resource type="Animation" id="Animation_0wfyh"]
 length = 0.001
@@ -87,6 +89,14 @@ stream = ExtResource("5_o6xl0")
 volume_db = -10.468
 bus = &"music"
 
+[node name="alarm" type="AudioStreamPlayer" parent="MusicManager" unique_id=1065553793]
+stream = ExtResource("6_choun")
+volume_db = -10.0
+bus = &"ambience"
+
+[node name="Playercaught" type="AudioStreamPlayer" parent="MusicManager" unique_id=816205448]
+stream = ExtResource("7_85g3d")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=312962812]
 top_level = true
 
@@ -127,5 +137,10 @@ color = Color(1, 1, 1, 0)
 [node name="BlinkalarmTimer" type="Timer" parent="AlarmManager" unique_id=1036244754]
 wait_time = 0.5
 
+[node name="copsArriveTimer" type="Timer" parent="AlarmManager" unique_id=1266600364]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="animation_finished" from="fadeInOut/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="AlarmManager/BlinkalarmTimer" to="AlarmManager" method="_on_blinkalarm_timer_timeout"]
+[connection signal="timeout" from="AlarmManager/copsArriveTimer" to="AlarmManager" method="_on_cops_arrive_timer_timeout"]

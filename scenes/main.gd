@@ -9,22 +9,25 @@ extends Node2D
 @onready var alarm_manager: CanvasLayer = $AlarmManager
 
 @onready var music: AudioStreamPlayer = $MusicManager/music
+@onready var alarm: AudioStreamPlayer = $MusicManager/alarm
+
+
 
 #const FIRST_LEVEL_PATH: String = "res://levels/level_1.tscn"
 
 var level_index = 0 # start with 0
 
 var level_list : Array[String] = [
-"res://levels/level_1.tscn", 
-"res://levels/level_2.tscn",
+#"res://levels/level_1.tscn", 
+#"res://levels/level_2.tscn",
 "res://levels/level_3.tscn",
 "res://levels/level_4.tscn",
-#"res://levels/level_5.tscn",
+"res://levels/level_5.tscn",
 #"res://levels/level_6.tscn",
 #"res://levels/level_7.tscn",
 #"res://levels/level_8.tscn",
 ]
-const DEBUG_SKIP_INTRO : bool = false
+const DEBUG_SKIP_INTRO : bool = true
 
 var next_level_path: String
 var current_level_path: String
@@ -40,6 +43,7 @@ func _ready() -> void:
 	_setup_new_level()
 
 	Events.connect("call_the_cops", cops_has_been_called)
+
 
 func _setup_new_level() -> void:
 	for child in level_container.get_children():
@@ -68,18 +72,27 @@ func _setup_new_level() -> void:
 		music.play()
 
 func restart_level() -> void:
+	music.stop()
+	stop_the_cops()
 	start_new_level(true)
 
 func start_new_level(to_restart : bool) -> void:
+	stop_the_cops()
+	
 	if not to_restart:
 		level_index += 1 
-	
-	if level_index != 0:
+		
+	if level_index != 0 and not to_restart:
 		level_win_sfx.play()
 	
 	print("main booting level: ", level_index)
 	next_level_path = level_list[level_index]
 	animation_player.play("fade_to_black")
+	
+	if to_restart:
+		await get_tree().create_timer(6.0).timeout
+		music.play(0)
+		
 
 func remove_active_cam() -> void:
 	var list := PhantomCameraManager.get_phantom_camera_2ds()
@@ -95,7 +108,6 @@ func _on_window_focus_exited() -> void:
 	pass
 	#focus_menu.visible = true
 
-
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	#only if fade to black
 	if anim_name == "fade_to_black":
@@ -104,9 +116,13 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		
 func cops_has_been_called() -> void:
 	print("from main cops")
+	music.pitch_scale = 1.15
 	alarm_manager.call_the_cops()
+	alarm.play()
 
 func stop_the_cops() -> void:
 	print("stop main cops")
 	alarm_manager.reset_level()
-		
+	music.pitch_scale = 1.0
+	alarm.stop()
+	

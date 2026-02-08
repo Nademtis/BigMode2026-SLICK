@@ -19,7 +19,6 @@ func _ready() -> void:
 
 	Events.connect("player_trying_to_escape", check_if_level_complete)
 
-		
 func _on_artifact_collected() -> void:
 	collected_amount += 1
 	
