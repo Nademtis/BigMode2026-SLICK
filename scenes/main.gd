@@ -11,6 +11,7 @@ extends Node2D
 @onready var music: AudioStreamPlayer = $MusicManager/music
 @onready var alarm: AudioStreamPlayer = $MusicManager/alarm
 
+@onready var focus_menu: CanvasLayer = $focusMenu
 
 
 #const FIRST_LEVEL_PATH: String = "res://levels/level_1.tscn"
@@ -24,8 +25,6 @@ var level_list : Array[String] = [
 "res://levels/level_4.tscn",
 "res://levels/level_5.tscn",
 "res://levels/level_6.tscn",
-#"res://levels/level_7.tscn",
-#"res://levels/level_8.tscn",
 "res://levels/level_end.tscn"#
 ]
 const DEBUG_SKIP_INTRO : bool = false
@@ -102,12 +101,10 @@ func remove_active_cam() -> void:
 			cam.priority = 0
 
 func _on_window_focus_entered() -> void:
-	pass
-	#focus_menu.visible = false
+	focus_menu.visible = false
 
 func _on_window_focus_exited() -> void:
-	pass
-	#focus_menu.visible = true
+	focus_menu.visible = true
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	#only if fade to black

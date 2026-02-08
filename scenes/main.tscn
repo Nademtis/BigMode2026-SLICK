@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://daf0snus7cr0n" path="res://audio/music/Heist_SFX_Alarm_Loop.ogg" id="6_choun"]
 [ext_resource type="Script" uid="uid://dn8bho6lwgldu" path="res://scenes/alarmManager.gd" id="6_tefeu"]
 [ext_resource type="AudioStream" uid="uid://cdfiwmq23f2sq" path="res://audio/sfx/player/Heist_SFX_Player_Caught.ogg" id="7_85g3d"]
+[ext_resource type="PackedScene" uid="uid://cchcjej6lwifp" path="res://misc/text.tscn" id="10_choun"]
 
 [sub_resource type="Animation" id="Animation_0wfyh"]
 length = 0.001
@@ -140,6 +141,30 @@ wait_time = 0.5
 [node name="copsArriveTimer" type="Timer" parent="AlarmManager" unique_id=1266600364]
 wait_time = 5.0
 one_shot = true
+
+[node name="focusMenu" type="CanvasLayer" parent="." unique_id=1555406280]
+
+[node name="ColorRect" type="ColorRect" parent="focusMenu" unique_id=1494063602]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3254902)
+
+[node name="RichTextLabel" parent="focusMenu/ColorRect" unique_id=1034662909 instance=ExtResource("10_choun")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -175.0
+offset_right = 360.0
+offset_bottom = 175.0
+theme_override_font_sizes/normal_font_size = 80
+text = "Click Anywhere to focus"
 
 [connection signal="animation_finished" from="fadeInOut/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="AlarmManager/BlinkalarmTimer" to="AlarmManager" method="_on_blinkalarm_timer_timeout"]
